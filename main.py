@@ -12,7 +12,7 @@ def main():
 
     # configuration
     config = {
-        'input_file': 'Case_Study_Data_JNM.csv',
+        'input_file': 'data.csv',
         'output_file': 'output/scenarios.csv',
         'n_scenarios': 10000,
         'n_steps': 12,  # one year
@@ -35,8 +35,7 @@ def main():
     copula.fit(std_residuals)
 
     # setup simulation engine
-    # Asset 2 is likely a bond -> assume zero drift for mean reversion
-    engine = SimulationEngine(garch_models, copula, drift_overrides={'2': 0.0})
+    engine = SimulationEngine(garch_models, copula)
     
     # generate scenarios
     scenarios = engine.generate_scenarios(
