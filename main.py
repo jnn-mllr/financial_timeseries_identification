@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from tqdm import tqdm
 from src.utils import load_and_preprocess_data
 from src.models import GarchModel, CopulaModel
 from src.simulation import SimulationEngine
@@ -24,7 +25,7 @@ def main():
     # fit GARCH models
     garch_models = {}
     std_residuals = pd.DataFrame()
-    for col in returns.columns:
+    for col in tqdm(returns.columns, desc="Fitting GARCH models"):
         model = GarchModel()
         model.fit(returns[col])
         garch_models[col] = model

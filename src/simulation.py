@@ -54,7 +54,8 @@ class SimulationEngine:
         # pre-calc t-scores (retransform uniforms u_t to t-scores)
         z_t = np.zeros_like(u_t)
         for i in range(self.n_assets):
-            z_t[:, :, i] = stats.t.ppf(u_t[:, :, i], df=nus[i])
+            variance_scaler = np.sqrt((nus[i] - 2) / nus[i])
+            z_t[:, :, i] = stats.t.ppf(u_t[:, :, i], df=nus[i]) * variance_scaler
         
         # time-stepping loop of simulation of returns
         simulated_returns = np.zeros((n_steps, n_scenarios, self.n_assets))
