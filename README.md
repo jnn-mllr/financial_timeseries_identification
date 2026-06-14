@@ -1,6 +1,12 @@
 # Monte Carlo Simulation Engine
 
-This project implements a Monte Carlo simulation engine for financial time series, based on a GARCH-Copula model.
+This project implements a Monte Carlo simulation engine for various financial time series, based on a GARCH-Copula model.
+
+## Time Series Identification & Methodology
+
+The financial time series in this repository are identified and analyzed using established quantitative finance methods:
+- **Univariate Analysis (GARCH):** Individual asset behaviors, such as volatility clustering and fat-tailed distributions, are identified and modeled separately using GARCH models.
+- **Multivariate Dependency (Copula):** The complex, non-linear relationships and joint tail risks between different time series are captured using a Student's t-Copula.
 
 ## Installation
 
